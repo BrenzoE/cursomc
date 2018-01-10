@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 
 import com.brenzo.cursomc.domain.Categoria;
 import com.brenzo.cursomc.repositories.CategoriaRepository;
+import com.brenzo.cursomc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class CategoriaService {
@@ -14,6 +15,9 @@ public class CategoriaService {
 	
 	public Categoria buscar(Integer id) {
 		Categoria obj = repo.findOne(id);
+		if(obj==null) {
+			throw new ObjectNotFoundException("Objeto não encontrado id: " + id + " e tipo: " + Categoria.class.getName());
+		}
 		return obj;
 	}
 }

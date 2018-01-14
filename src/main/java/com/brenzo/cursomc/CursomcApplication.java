@@ -9,10 +9,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import com.brenzo.cursomc.domain.Categoria;
 import com.brenzo.cursomc.domain.Cidade;
+import com.brenzo.cursomc.domain.Cliente;
+import com.brenzo.cursomc.domain.Endereco;
 import com.brenzo.cursomc.domain.Estado;
 import com.brenzo.cursomc.domain.Produto;
+import com.brenzo.cursomc.domain.enums.TipoCliente;
 import com.brenzo.cursomc.repositories.CategoriaRepository;
 import com.brenzo.cursomc.repositories.CidadeRepository;
+import com.brenzo.cursomc.repositories.ClienteRepository;
+import com.brenzo.cursomc.repositories.EnderecoRepository;
 import com.brenzo.cursomc.repositories.EstadoRepository;
 import com.brenzo.cursomc.repositories.ProdutoRepository;
 
@@ -20,17 +25,22 @@ import com.brenzo.cursomc.repositories.ProdutoRepository;
 public class CursomcApplication implements CommandLineRunner{
 
 	@Autowired
-	CategoriaRepository categoriaRepository;
+	private CategoriaRepository categoriaRepository;
 	
 	@Autowired
-	ProdutoRepository produtoRepository;
+	private ProdutoRepository produtoRepository;
 	
 	@Autowired
-	EstadoRepository estadoRepository;
+	private EstadoRepository estadoRepository;
 	
 	@Autowired
-	CidadeRepository cidadeRepository;
+	private CidadeRepository cidadeRepository;
 	
+	@Autowired
+	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private ClienteRepository clienteRepository;
 	
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
@@ -68,6 +78,17 @@ public class CursomcApplication implements CommandLineRunner{
 		
 		estadoRepository.save(Arrays.asList(est1,est2));
 		cidadeRepository.save(Arrays.asList(c1,c2,c3));
+		
+		Cliente cli1 = new Cliente(null,"Maria Silva","maria@gmail.com","36378912377", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("154784845","528484842"));
+		
+		Endereco e1 = new Endereco(null, "Rua Flores", "300", "apto 203", "jardim", "38230834", cli1, c1);
+		Endereco e2 = new Endereco(null, "Avenida Matos", "105", "Sala 800", "Centro", "38777012", cli1, c2);
+		
+		cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+		
+		clienteRepository.save(Arrays.asList(cli1));
+		enderecoRepository.save(Arrays.asList(e1,e2));
 		
 	}
 }

@@ -10,7 +10,6 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.brenzo.cursomc.domain.Categoria;
-import com.brenzo.cursomc.domain.Cliente;
 import com.brenzo.cursomc.dto.CategoriaDTO;
 import com.brenzo.cursomc.repositories.CategoriaRepository;
 import com.brenzo.cursomc.services.exceptions.DataIntegrityException;
@@ -49,7 +48,6 @@ public class CategoriaService {
 		catch(DataIntegrityViolationException e) {
 			throw new DataIntegrityException("Não é possivel deletar uma Categoria que possui produtos");
 		}
-		
 	}
 	
 	public List<Categoria> findAll(){
@@ -64,6 +62,8 @@ public class CategoriaService {
 	public Categoria fromDTO(CategoriaDTO objDto) {
 		return new Categoria(objDto.getId(), objDto.getNome());
 	}
+	
+	
 	
 	private void updateData(Categoria newObj, Categoria obj) {
 		newObj.setNome(obj.getNome());

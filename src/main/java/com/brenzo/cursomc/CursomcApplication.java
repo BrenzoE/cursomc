@@ -34,6 +34,9 @@ import com.brenzo.cursomc.repositories.ProdutoRepository;
 @SpringBootApplication
 public class CursomcApplication implements CommandLineRunner{
 
+	// Nessa parte do código basicamento estanciamos os objetos no banco de dados
+	//aqui estamos declarando os repositories
+	
 	@Autowired
 	private CategoriaRepository categoriaRepository;
 	
@@ -64,7 +67,8 @@ public class CursomcApplication implements CommandLineRunner{
 	public static void main(String[] args) {
 		SpringApplication.run(CursomcApplication.class, args);
 	}
-
+	
+	//aqui no override do metodo run declaramos os objetos
 	@Override
 	public void run(String... arg0) throws Exception {
 		Categoria cat1 = new Categoria(null, "Informática");

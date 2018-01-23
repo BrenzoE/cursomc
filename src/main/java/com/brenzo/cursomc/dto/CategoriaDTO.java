@@ -7,6 +7,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 import com.brenzo.cursomc.domain.Categoria;
 
+//Implementação de DTO para exibir as informações via json
 public class CategoriaDTO implements Serializable{
 	private static final long serialVersionUID = 1L;
 	

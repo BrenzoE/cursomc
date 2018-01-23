@@ -1,5 +1,6 @@
 package com.brenzo.cursomc.domain.enums;
 
+//Implentação de enum com Id e descrição para nao termos problemas adicionando um novo enum
 public enum EstadoPagamento {
 	
 	PENDENTE(1, "Pendente"),
@@ -22,6 +23,7 @@ public enum EstadoPagamento {
 		return descricao;
 	}
 	
+	//Transforma o codigo em enum
 	public static EstadoPagamento toEnum(Integer cod) {
 		
 		if (cod == null) {
